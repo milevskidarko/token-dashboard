@@ -1,0 +1,359 @@
+$primary-color: #007bff;
+$secondary-color: #0056b3;
+$border-color: #ddd;
+$background-color: #f9f9f9;
+$text-color: #333;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$card-radius: 8px;
+$padding: 20px;
+
+.wallet-connect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $padding;
+  border: 1px solid $border-color;
+  border-radius: $card-radius;
+  background-color: #fff;
+  box-shadow: $box-shadow;
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
+}
+
+.loading {
+  text-align: center;
+}
+
+.token-search {
+  margin: 20px;
+  text-align: center;
+  @media (max-width: 320px) {
+    width: 400px;
+  }
+  @media (max-width: 425px) {
+    width: 90%;
+  }
+  @media (max-width: 375px) {
+    width: 100%;
+  }
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  input {
+    padding: 10px;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+  }
+  .copy-button {
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-left: 5px;
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
+
+  .search-button {
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: not-allowed;
+    font-size: 16px;
+
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
+}
+
+.token-details {
+  margin: 20px;
+  text-align: center;
+  padding: $padding;
+  border: 1px solid $border-color;
+  border-radius: $card-radius;
+  background-color: #fff;
+  box-shadow: $box-shadow;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin: 5px 0;
+  }
+
+  h2 {
+    margin-top: 20px;
+    border-top: 2px solid $primary-color;
+    padding-bottom: 10px;
+  }
+}
+.token-chart {
+  margin: 20px;
+  padding: $padding;
+  border: 1px solid $border-color;
+  border-radius: $card-radius;
+  background-color: #fff;
+  box-shadow: $box-shadow;
+
+  h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  @media (max-width: 321px) {
+    height: 450px;
+    width: 380px;
+  }
+  .chart-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+
+    @media (min-width: 769px) {
+      height: 500px;
+    }
+
+    @media (max-width: 768px) {
+      height: 300px;
+    }
+
+    @media (max-width: 480px) {
+      height: 455px;
+      canvas {
+        width: 90% !important;
+        height: 100% !important;
+      }
+    }
+
+    @media (max-width: 321px) {
+      height: 400px;
+      width: 600px;
+      canvas {
+        width: 300px !important;
+        height: 400px !important;
+      }
+    }
+  }
+}
+
+.token-stats-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: $padding;
+  margin: 20px;
+  max-width: 400px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: "Arial", sans-serif;
+  margin: 0 auto;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: $text-color;
+    text-align: center;
+  }
+
+  p {
+    font-size: 16px;
+    margin: 15px 0;
+    padding: 0;
+    color: #555;
+
+    strong {
+      color: #000;
+    }
+
+    &:nth-child(odd) {
+      background-color: $background-color;
+      border-radius: 8px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    max-width: 90%;
+    margin: 10px auto;
+    padding: 15px;
+
+    h1 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+}
+
+.token-holders,
+.lp-holders,
+.dex-details {
+  margin: 20px;
+  padding: $padding;
+  background-color: $background-color;
+  border-radius: $card-radius;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  @media (max-width: 425px) {
+    margin: 5px;
+    padding: 8px;
+  }
+
+  select {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
+
+    @media (max-width: 425px) {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }
+
+  &-info {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: $card-radius;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    p {
+      margin: 10px 0;
+      font-size: 16px;
+      color: $text-color;
+
+      strong {
+        color: #555;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 14px;
+      }
+
+      @media (max-width: 425px) {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.token-dashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+  padding: $padding;
+  flex-wrap: wrap;
+
+  .token-column {
+    flex: 1;
+    margin: 10px;
+
+    &.left {
+      margin-right: 20px;
+    }
+
+    &.right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+
+    .token-column {
+      margin: 10px 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+
+    .token-column {
+      margin: 10px 0;
+    }
+  }
+  @media (max-width: 480px) {
+    padding: 5px;
+    width: 300px;
+    .token-column {
+      margin: 5px 0;
+    }
+  }
+  @media (max-width: 325px) {
+    padding: 5px;
+    width: 400px;
+    .token-column {
+      margin: 5px 0;
+    }
+  }
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.copy-button {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 15px;
+
+  &:hover {
+    background-color: $secondary-color;
+  }
+}
