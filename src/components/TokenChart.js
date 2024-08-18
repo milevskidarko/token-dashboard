@@ -1,5 +1,5 @@
-import React from 'react';
-import { Line } from 'react-chartjs-2';
+import React from "react";
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,8 +8,8 @@ import {
   PointElement,
   Tooltip,
   Legend,
-} from 'chart.js';
-import '../styles.scss';
+} from "chart.js";
+import "../styles.scss";
 
 ChartJS.register(
   CategoryScale,
@@ -20,28 +20,29 @@ ChartJS.register(
   Legend
 );
 
-function TokenChart({ data }) {
+const TokenChart = ({ data }) => {
   const token = data?.result?.["0xea51801b8f5b88543ddad3d1727400c15b209d8f"];
   const labels = token?.lp_holders?.map((lpHolder) => lpHolder.address) || [];
   const balances = token?.lp_holders?.map((lpHolder) => lpHolder.balance) || [];
-  const percentages = token?.lp_holders?.map((lpHolder) => lpHolder.percent) || [];
+  const percentages =
+    token?.lp_holders?.map((lpHolder) => lpHolder.percent) || [];
 
   const chartData = {
     labels: labels,
     datasets: [
       {
-        label: 'Balance',
+        label: "Balance",
         data: balances,
-        borderColor: 'rgba(75,192,192,1)',
-        backgroundColor: 'rgba(75,192,192,0.2)',
-        yAxisID: 'y',
+        borderColor: "rgba(75,192,192,1)",
+        backgroundColor: "rgba(75,192,192,0.2)",
+        yAxisID: "y",
       },
       {
-        label: 'Percent',
+        label: "Percent",
         data: percentages,
-        borderColor: 'rgba(153,102,255,1)',
-        backgroundColor: 'rgba(153,102,255,0.2)',
-        yAxisID: 'y1',
+        borderColor: "rgba(153,102,255,1)",
+        backgroundColor: "rgba(153,102,255,0.2)",
+        yAxisID: "y1",
       },
     ],
   };
@@ -51,19 +52,19 @@ function TokenChart({ data }) {
     maintainAspectRatio: false,
     scales: {
       y: {
-        type: 'linear',
-        position: 'left',
+        type: "linear",
+        position: "left",
         title: {
           display: true,
-          text: 'Balance',
+          text: "Balance",
         },
       },
       y1: {
-        type: 'linear',
-        position: 'right',
+        type: "linear",
+        position: "right",
         title: {
           display: true,
-          text: 'Percent',
+          text: "Percent",
         },
         grid: {
           drawOnChartArea: false,
@@ -80,6 +81,6 @@ function TokenChart({ data }) {
       </div>
     </div>
   );
-}
+};
 
 export default TokenChart;

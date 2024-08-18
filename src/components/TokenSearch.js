@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import '../styles.scss';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import React, { useState } from "react";
+import "../styles.scss";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
-function TokenSearch({ onSearch }) {
+const TokenSearch = ({ onSearch }) => {
   const [address, setAddress] = useState("");
   const defaultAddress = "0xEa51801b8F5B88543DdaD3D1727400c15b209D8f";
 
@@ -28,14 +28,19 @@ function TokenSearch({ onSearch }) {
           onChange={handleChange}
           placeholder="Copy token address from right button on clipboard"
         />
-        <CopyToClipboard text={defaultAddress} className='copy-button'>
+        <CopyToClipboard text={defaultAddress} className="copy-button">
           <button data-for="copyTooltip">📋</button>
         </CopyToClipboard>
       </div>
-      <button className='search-button' disabled={!isAddressValid} onClick={handleSubmit}>Search</button>
-
+      <button
+        className="search-button"
+        disabled={!isAddressValid}
+        onClick={handleSubmit}
+      >
+        Search
+      </button>
     </div>
   );
-}
+};
 
 export default TokenSearch;

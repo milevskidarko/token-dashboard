@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import TokenSearch from "./components/TokenSearch";
 import TokenDetails from "./components/TokenDetails";
-import ModalComponent from "./components/ModalComponent";
+import WalletConnect from "./components/WalletConnect";
 import TokenChart from "./components/TokenChart";
+import BackButton from "./components/BackButton";
 import { fetchTokenData } from "./utils/api";
 
-function App() {
-  const [isConnected, setIsConnected] = useState(false);
-  const [tokenData, setTokenData] = useState(null);
-  const [showModal, setShowModal] = useState(true);
+const App = () => {
+  const [isConnected, setIsConnected] = useState(() => {
+    const savedState = sessionStorage.getItem("isConnected");
+    return savedState === "true";
+  });
+  const [tokenData, setTokenData] = useState(() => {
+    const savedData = sessionStorage.getItem("tokenData");
+    return savedData ? JSON.parse(savedData) : null;
+  });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    sessionStorage.setItem("isConnected", isConnected);
+    sessionStorage.setItem("tokenData", JSON.stringify(tokenData));
+  }, [isConnected, tokenData]);
 
   const handleConnectWallet = () => {
     setIsConnected(true);
-    setShowModal(false);
   };
 
   const handleSearch = async (address) => {
@@ -21,8 +33,9 @@ function App() {
     try {
       const data = await fetchTokenData(address);
       setTokenData(data);
+      navigate("/details");
     } catch (err) {
-      console.log(err);
+      console.log("Error fetching token data:", err);
     } finally {
       setLoading(false);
     }
@@ -30,14 +43,31 @@ function App() {
 
   return (
     <div>
-      {showModal && <ModalComponent onConnect={handleConnectWallet} />}
-      {!showModal && isConnected && (
-        <>
-          <TokenSearch onSearch={handleSearch} />
-          {loading && <p className="loading">Loading...</p>}
-          {tokenData && !loading && <TokenDetails tokenData={tokenData} />}
-          {tokenData && !loading && <TokenChart data={tokenData} />}
-        </>
+      {!isConnected && <WalletConnect onConnect={handleConnectWallet} />}
+      {isConnected && (
+        <Routes>
+          <Route
+            path="/"
+            element={isConnected && <TokenSearch onSearch={handleSearch} />}
+          />
+          <Route
+            path="/details"
+            element={
+              <>
+                <BackButton setIsConnected={setIsConnected} />
+                {loading && <p className="loading">Loading...</p>}
+                {tokenData ? (
+                  <>
+                    <TokenDetails tokenData={tokenData} />
+                    <TokenChart data={tokenData} />
+                  </>
+                ) : (
+                  <p>No token data available.</p>
+                )}
+              </>
+            }
+          />
+        </Routes>
       )}
     </div>
   );
